@@ -1,0 +1,64 @@
+{
+    "name": "wangtao",
+    "displayName": "displayName",
+    "description": "description",
+    "publisher": "publisher",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sayHello"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [{
+            "command": "extension.sayHello",
+            "title": "Hello World"
+        }],
+        "keybindings":[{
+            "command": "extension.sayHello",
+            "key": "ctrl+shift+a",
+            "mac": "ctrl+shift+a",
+            "when": "editorTextFocus"
+        }],
+        "menus":{
+            "editor/context": [
+            {
+                "when": "resourceLangId == cpp",
+                "command": "extension.sayHello",
+                "group": "navigation"
+            }],
+            "editor/title": [{
+                "when": "resourceLangId == cpp",
+                "command": "extension.sayHello",
+                "group": "navigation"
+            }]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "sayHello configuration",
+            "properties": {
+                "sayHello.encoding": {
+                    "type": "string",
+                    "default": "utf-8",
+                    "description": "default file encoding"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "eslint": "^4.11.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
+}
